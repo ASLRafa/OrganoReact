@@ -1,0 +1,12 @@
+:root {
+  --bg: #6278f7;
+}
+
+.banner {
+  background-color: var(--bg);
+  text-align: center;
+}
+
+.banner img {
+  max-width: 100%;
+}

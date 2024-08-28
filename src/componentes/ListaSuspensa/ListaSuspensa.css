@@ -1,0 +1,20 @@
+.lista-suspensa {
+}
+
+.lista-suspensa select {
+  background-color: #ffffff;
+  color: black;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.12);
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  border: none;
+}
+
+.lista-suspensa label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 24px;
+  font-weight: 600;
+  font-family: "Montserrat";
+}
