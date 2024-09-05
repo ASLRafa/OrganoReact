@@ -18,6 +18,7 @@ const Time = (props) => {
               cargo={colaborador.cargo}
               imagem={colaborador.imagem}
               cor={props.corPrimaria}
+              key={colaborador.nome}
             />
           ))}
         </div>
