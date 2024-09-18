@@ -3,6 +3,7 @@ import Botao from "../Botao";
 import Campo from "../Campo";
 import ListaSuspensa from "../ListaSuspensa";
 import "./formulario.css";
+import { v4 as uuidv4 } from "uuid";
 
 const Formulario = ({ aoCadastrar, times, cadastrarTime }) => {
   const [nome, setNome] = useState("");
@@ -12,8 +13,27 @@ const Formulario = ({ aoCadastrar, times, cadastrarTime }) => {
   const [nomeTime, setNomeTime] = useState("");
   const [corTime, setCorTime] = useState("");
 
+  function postJson(nome, cargo, imagem, time) {
+    fetch(`http://localhost:8080/funcionarios`, {
+      method: "POST",
+      body: JSON.stringify({
+        id: uuidv4(),
+        nome: nome,
+        cargo: cargo,
+        time: time,
+        imagem: imagem,
+        favorito: false,
+      }),
+    })
+      .then((response) => response.json())
+      .then((novapessoa) => {
+        console.log(novapessoa);
+      });
+  }
+
   const aoSubmeter = (evento) => {
     evento.preventDefault();
+    postJson(nome, cargo, imagem, time);
     console.log("form enviado", nome, cargo, imagem, time);
     aoCadastrar({
       nome,

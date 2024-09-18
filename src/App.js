@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Banner from "./componentes/Banner";
 import Formulario from "./componentes/Formulario";
 import Rodape from "./componentes/Rodape";
@@ -263,9 +263,45 @@ function App() {
     },
   ];
 
-  const [colaboradores, setColaboradores] = useState(inicial);
+  // TRABALHANDO
+  useEffect(() => {
+    fetch(`http://localhost:8080/funcionarios`)
+      .then((resposta) => resposta.json())
+      .then((dados) => setColaboradores(dados));
+  }, []);
 
+  // useEffect(() => {
+  //   fetch(`http://localhost:8080/funcionarios`, {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //       id: 2,
+  //       nome: "Raquel Vitoria",
+  //       cargo: "Desenvolvedora",
+  //       time: "Front-End",
+  //       imagem:
+  //         "https://www.alura.com.br/assets/img/lideres/juliana-amoasei.1647533644.jpeg",
+  //       favorito: false,
+  //     }),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((novapessoa) => {
+  //       console.log(novapessoa);
+  //     });
+  // }, []);
+
+  // TRABALHANDO
+
+  const [colaboradores, setColaboradores] = useState([]);
+
+  function deleteById(id) {
+    fetch(`http://localhost:8080/funcionarios/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then(() => console.log("User deleted"));
+  }
   function deletarColaborador(id) {
+    deleteById(id);
     setColaboradores(
       colaboradores.filter((colaborador) => colaborador.id !== id)
     );
